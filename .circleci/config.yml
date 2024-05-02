@@ -14,14 +14,18 @@ jobs:
           name: Deploy to Sandbox
           command: |
             # Add your deployment commands for sandbox environment here
-            "echo Deploying to sandbox"
+            echo "Deploying to sandbox"
+            # Example:
+            # kubectl apply -f sandbox.yaml
             
       # Add deployment steps for dev environment
       - deploy:
           name: Deploy to Dev
           command: |
             # Add your deployment commands for dev environment here
-            "echo Deploying to dev"
+            echo "Deploying to dev"
+            # Example:
+            # kubectl apply -f dev.yaml
 
 workflows:
   say-hello-workflow:
