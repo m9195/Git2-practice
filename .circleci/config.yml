@@ -6,13 +6,14 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - when:
-          condition:
-            equal: [ main, << pipeline.git.branch >> ]
-          steps:
-            - run: echo "I am on main"
+      - run:
+          name: Echo branch name
+          command: echo "I am on main"
 
 workflows:
   my-workflow:
     jobs:
-      - my-job
+      - my-job:
+          filters:
+            branches:
+              only: main
