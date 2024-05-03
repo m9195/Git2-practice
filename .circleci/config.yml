@@ -27,3 +27,7 @@ workflows:
           filters:
             branches:
               only: main
+      - deploy:
+          filters:
+            branches:
+              ignore: /.*/
