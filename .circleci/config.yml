@@ -1,33 +1,18 @@
 version: 2.1
 
 jobs:
-  say-hello:
+  my-job:
     docker:
-      - image: cimg/base:current
+      - image: cimg/base:stable
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-      # Add deployment steps for sandbox environment
-      - deploy:
-          name: Deploy to Sandbox
-          command: |
-            # Add your deployment commands for sandbox environment here
-            echo "Deploying to sandbox"
-            # Example:
-            # kubectl apply -f sandbox.yaml
-            
-      # Add deployment steps for dev environment
-      - deploy:
-          name: Deploy to Dev
-          command: |
-            # Add your deployment commands for dev environment here
-            echo "Deploying to dev"
-            # Example:
-            # kubectl apply -f dev.yaml
+      - when:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - run: echo "I am on main"
 
 workflows:
-  say-hello-workflow:
+  my-workflow:
     jobs:
-      - say-hello
+      - my-job
