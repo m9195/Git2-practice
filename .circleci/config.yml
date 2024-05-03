@@ -10,6 +10,16 @@ jobs:
           name: Echo branch name
           command: echo "I am on main"
 
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Echo branch name
+          command: echo "I am not on main"
+
+
 workflows:
   my-workflow:
     jobs:
